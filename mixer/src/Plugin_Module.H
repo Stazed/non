@@ -447,8 +447,6 @@ public:
     int plugin_ins ( void ) const { return _plugin_ins; }
     int plugin_outs ( void ) const { return _plugin_outs; }
 
-    void select_plugin ( unsigned long id );
-
     const char *name ( void ) const { return "Plugin"; }
 
     int can_support_inputs ( int );
