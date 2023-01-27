@@ -96,8 +96,11 @@ Fl_SliderX::draw ( int X, int Y, int W, int H)
             fl_translate( xsl + (hh/2), ysl);
         else
             fl_translate( xsl, ysl + (hh/2) );
-      
+#ifdef USE_FLTK
+        fl_color( FL_WHITE );
+#else
         fl_color( fl_color_add_alpha( FL_WHITE, 127 ));
+#endif
         fl_begin_polygon(); fl_circle(0.0,0.0, hh/3); fl_end_polygon();
         fl_color( FL_WHITE );
         fl_begin_polygon(); fl_circle(0.0,0.0, hh/6); fl_end_polygon();

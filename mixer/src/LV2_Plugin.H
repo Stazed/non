@@ -33,6 +33,8 @@
 #include "zix/sem.h"
 #include "zix/thread.h"
 #include "lv2/atom-forge.h"
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 
 #define PRESET_SUPPORT 1
 #define USE_CARLA 1

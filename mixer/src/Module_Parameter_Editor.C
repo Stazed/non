@@ -33,7 +33,7 @@
 #include "../../FL/Fl_Flowpack.H"
 #include "../../FL/Fl_Labelpad_Group.H"
 #include "../../FL/Fl_Value_SliderX.H"
-#include "../../FL/Fl_DialX.H"
+//#include "../../FL/Fl_DialX.H"
 #include "../../FL/test_press.H"
 #include "../../FL/menu_popup.H"
 #include "../../nonlib/debug.h"
@@ -41,7 +41,7 @@
 #include "FL/Fl_Flowpack.H"
 #include "FL/Fl_Labelpad_Group.H"
 #include "FL/Fl_Value_SliderX.H"
-#include "FL/Fl_DialX.H"
+//#include "FL/Fl_DialX.H"
 #include "FL/test_press.H"
 #include "FL/menu_popup.H"
 #include "debug.h"
@@ -138,8 +138,11 @@ Module_Parameter_Editor::Module_Parameter_Editor ( Module *module ) : Fl_Double_
 #endif  // PRESET_SUPPORT
 
 #ifdef LV2_STATE_SAVE
+#ifdef USE_FLTK
+            Fl_Color fc = FL_CYAN;
+#else
             Fl_Color fc = fl_color_add_alpha( FL_CYAN, 200 );
-
+#endif
             { Fl_Button *o = new Fl_Button( 275, 0, 100, 24, "Save State" );
                 o->selection_color( fc );
                 o->type( FL_NORMAL_BUTTON );
@@ -249,8 +252,12 @@ Module_Parameter_Editor::make_controls ( void )
     float elevation_value = 0.0f;
     radius_port_number = -1;
     float radius_value = 0.0f;
-    
+
+#ifdef USE_FLTK
+    Fl_Color fc = FL_CYAN;
+#else
     Fl_Color fc = fl_color_add_alpha( FL_CYAN, 200 );
+#endif
     Fl_Color bc = FL_BACKGROUND_COLOR;
 
     controls_by_port.resize( module->control_input.size() );

@@ -96,7 +96,11 @@ Spatialization_Console::get ( Log_Entry &e ) const
 {
     e.add( ":range", panner->range() );
     e.add( ":projection", panner->projection() );
+#ifdef USE_FLTK
+    e.add( ":shown", ((Fl_Double_Window*)this)->shown() );
+#else
     e.add( ":shown", ((const Fl_Double_Window*)this)->shown() );
+#endif
 }
 
 void

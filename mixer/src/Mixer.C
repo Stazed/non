@@ -53,7 +53,12 @@
 
 #include "Project.H"
 #include <FL/Fl_File_Chooser.H>
-#include <FL/Fl_Theme_Chooser.H>
+#ifdef USE_FLTK
+    #include "../../FL/Fl_Tooltip.H"
+    // FIXME
+#else
+    #include <FL/Fl_Theme_Chooser.H>
+#endif
 #include <FL/Fl_Tooltip.H>
 #include "Spatialization_Console.H"
 #include "Group.H"
@@ -380,7 +385,11 @@ void Mixer::cb_menu(Fl_Widget* o) {
     }
     else if (! strcmp( picked, "&View/&Theme") )
     {
+#ifdef USE_FLTK
+      // FIXME
+#else
         fl_theme_chooser();
+#endif
     }
     else if ( ! strcmp( picked, "&Mixer/Toggle &Fader View" ) )
     {
@@ -528,8 +537,13 @@ Mixer::Mixer ( int X, int Y, int W, int H, const char *L ) :
 
     Fl_Tooltip::hoverdelay( 0 );
     Fl_Tooltip::delay( 0 );
+#ifdef USE_FLTK
     fl_show_tooltip = &Mixer::show_tooltip;
     fl_hide_tooltip = &Mixer::hide_tooltip;
+#else
+    fl_show_tooltip = &Mixer::show_tooltip;
+    fl_hide_tooltip = &Mixer::hide_tooltip;
+#endif
     /* Fl_Tooltip::size( 11 ); */
     /* Fl_Tooltip::textcolor( FL_FOREGROUND_COLOR ); */
     /* Fl_Tooltip::color( fl_color_add_alpha( FL_DARK1, 0 ) ); */

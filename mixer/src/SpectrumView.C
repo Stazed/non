@@ -280,8 +280,11 @@ SpectrumView::draw_semilog ( void )
         float i = ((_dbmax-_dbmin)+_dbmin) / (_dbmax-_dbmin);
         
         int level = y()+H*i;
-                
+#ifdef USE_FLTK
+        fl_color(fl_rgb_color(240,240,240));
+#else
         fl_color(fl_color_add_alpha(fl_rgb_color(240,240,240), 60 ));
+#endif
         fl_line(x(), level, x()+W, level);
         fl_line_style(FL_SOLID,0);
     }
@@ -317,15 +320,20 @@ SpectrumView::draw ( void )
     }
 
     //Draw grid
+#ifdef USE_FLTK
+    fl_color(fl_rgb_color( 100,100,100));
+#else
     fl_color(fl_color_add_alpha(fl_rgb_color( 100,100,100), 50 ));
-
+#endif
     draw_semilog();
 
     fl_push_clip( x(),y(),W,H);
 
-            
+#ifdef USE_FLTK
+    fl_color(selection_color());
+#else
     fl_color(fl_color_add_alpha( selection_color(), 20 ));
-   
+#endif
     fl_push_matrix();
     fl_translate( x(), y() + 2 );
     fl_scale( W,H- 2 );
@@ -339,8 +347,11 @@ SpectrumView::draw ( void )
     fl_vertex(1.0,1.0);
                   
     fl_end_polygon();
-
+#ifdef USE_FLTK
+    fl_color(selection_color());
+#else
     fl_color(fl_color_add_alpha( selection_color(), 100 ));
+#endif
     fl_begin_line();
     fl_line_style(FL_SOLID,2);
     

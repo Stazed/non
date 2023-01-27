@@ -382,9 +382,11 @@ Panner::draw ( void )
 
         if ( ! p->visible )
             continue;
-
+#ifdef USE_FLTK
+        Fl_Color c = p->color;
+#else
         Fl_Color c = fl_color_add_alpha( p->color, 150 );
-
+#endif
         fl_color(c);
 
         int px, py, pw, ph;
@@ -416,8 +418,11 @@ Panner::draw ( void )
         }
     
         const char *s = p->label;
-
+#ifdef USE_FLTK
+        fl_color(fl_rgb_color( 220,255,255 ));
+#else
         fl_color( fl_color_add_alpha( fl_rgb_color( 220,255,255 ), 127 ) );
+#endif
         fl_font( FL_HELVETICA_BOLD_ITALIC, 10 );
         fl_draw( s, px + 20, py + 1, 50, ph - 1, FL_ALIGN_LEFT );
 

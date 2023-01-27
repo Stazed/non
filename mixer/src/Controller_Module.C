@@ -25,13 +25,13 @@
 #ifdef USE_CMAKE
 #include "../../FL/menu_popup.H"
 #include "../../FL/test_press.H"
-#include "../../FL/Fl_DialX.H"
+//#include "../../FL/Fl_DialX.H"
 #include "../../FL/Fl_Labelpad_Group.H"
 #include "../../FL/Fl_Value_SliderX.H"
 #include "../../nonlib/OSC/Endpoint.H"
 #include "../../nonlib/string_util.h"
 #else
-#include "FL/Fl_DialX.H"
+//#include "FL/Fl_DialX.H"
 #include "FL/menu_popup.H"
 #include "FL/test_press.H"
 #include "FL/Fl_Labelpad_Group.H"
@@ -919,12 +919,20 @@ Controller_Module::draw ( void )
 
     if ( learn_mode() )
     {
+#ifdef USE_FLTK
+        fl_rectf( x(),y(),w(),h(),
+		      this == _learning_control
+		      ? FL_RED
+		      : FL_GREEN
+		      );
+#else
 	fl_rectf( x(),y(),w(),h(),
 		  fl_color_add_alpha(
 		      this == _learning_control
 		      ? FL_RED
 		      : FL_GREEN,
 		      60 ) );
+#endif
     }
 }
 
