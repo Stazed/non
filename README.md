@@ -1,3 +1,11 @@
+ATTENTION - WORK ON NON-MIXER-XT WILL CONTINUE AT THE NEW REPOSITORY:
+=====================================================================
+```bash
+    git clone https://github.com/Stazed/non-mixer-xt.git
+```
+
+This repository will not longer be developed!!
+
 Non-Mixer-XT
 ============
 
